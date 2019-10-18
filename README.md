@@ -13,6 +13,15 @@ yarn add -D @storybook/vue
 yarn add -D vue-loader vue-template-compiler @babel/core babel-loader babel-preset-vue
 ```
 
-```add storybook command to package.json
+## add storybook command to package.json
 
 ```
+{
+"scripts": {
+  "storybook": "start-storybook"
+}
+}
+
+```
+
+## create config file
