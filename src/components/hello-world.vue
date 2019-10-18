@@ -17,7 +17,7 @@ export default {
   methods: {
     notifyMe () {
       Notify.create('Danger, Will Robinson! Danger!')
-      this.$emit('handleClick', 'goed zo')
+      this.$emit('handleClick', 'you clicked me')
     }
   }
 }

@@ -24,4 +24,38 @@ yarn add -D vue-loader vue-template-compiler @babel/core babel-loader babel-pres
 
 ```
 
-## create config file
+## create config file and webpack.config
+
+## addon story source
+
+```
+yarn add -D @storybook/addon-storysource
+```
+
+Update webpack config with:
+
+```
+ config.module.rules.push({
+    test: /\.stories\.jsx?$/,
+    loaders: [require.resolve('@storybook/source-loader')],
+    enforce: 'pre'
+  })
+```
+
+add in addon.js
+
+```
+import '@storybook/addon-storysource/register'
+```
+
+## addon action
+
+```
+yarn add -D @storybook/addon-actions
+```
+
+add in addon.js
+
+```
+import '@storybook/addon-actions/register'
+```
