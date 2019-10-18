@@ -26,6 +26,41 @@ yarn add -D vue-loader vue-template-compiler @babel/core babel-loader babel-pres
 
 ## create config file and webpack.config
 
+create config.json in .storybook folder
+
+```
+import { configure } from '@storybook/vue'
+
+import 'quasar/dist/quasar.sass'
+
+import Vue from 'vue'
+import Quasar from 'quasar'
+
+import 'quasar/icon-set/material-icons'
+import '@quasar/extras/roboto-font/roboto-font.css'
+
+Vue.use(Quasar)
+configure(require.context('../src', true, /\.stories\.js$/), module)
+
+```
+
+create webpack.config.js in .storybook folder
+
+```
+const path = require('path')
+
+module.exports = ({ config }) => {
+  config.module.rules.push({
+    test: /\.(scss|sass)$/,
+    use: ['style-loader', 'css-loader', 'sass-loader'],
+    include: path.resolve(__dirname, '../')
+  })
+
+  return config
+}
+
+```
+
 ## addon story source
 
 ```
@@ -40,6 +75,27 @@ Update webpack config with:
     loaders: [require.resolve('@storybook/source-loader')],
     enforce: 'pre'
   })
+```
+
+so it becomes:
+
+```
+const path = require('path')
+
+module.exports = ({ config }) => {
+  config.module.rules.push({
+    test: /\.(scss|sass)$/,
+    use: ['style-loader', 'css-loader', 'sass-loader'],
+    include: path.resolve(__dirname, '../')
+  })
+  config.module.rules.push({
+    test: /\.stories\.jsx?$/,
+    loaders: [require.resolve('@storybook/source-loader')],
+    enforce: 'pre'
+  })
+
+  return config
+}
 ```
 
 add in addon.js
